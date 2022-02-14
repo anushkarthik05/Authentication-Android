@@ -41,7 +41,6 @@ public class Signup extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent);
-                //Goes to Login Page
             }
         });
         String path = "android.resource://"+getPackageName()+"/"+R.raw.logo_small;
