@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -21,6 +22,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Signup extends AppCompatActivity {
+    TextView textView;
     ImageView imageView;
     EditText name,email,phno,password;
     Button signup_btn;
@@ -33,6 +35,14 @@ public class Signup extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
         mAuth = FirebaseAuth.getInstance();
         imageView=findViewById(R.id.image);
+        textView=findViewById(R.id.login_msg);
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
+            }
+        });
         String path = "android.resource://"+getPackageName()+"/"+R.raw.logo_small;
         Uri uri =Uri.parse(path);
         imageView.setImageURI(uri);
@@ -44,6 +54,10 @@ public class Signup extends AppCompatActivity {
         signup_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(name.getText().toString().length()==0||phno.getText().toString().length()==0||email.getText().toString().length()==0||password.getText().toString().length()==0){
+                    Toast.makeText(getApplicationContext(),"Fill all the fields.",Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 mAuth.createUserWithEmailAndPassword(email.getText().toString(),password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {

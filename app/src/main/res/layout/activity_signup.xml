@@ -83,6 +83,16 @@
             android:text="Sign Up"
             android:id="@+id/signup_btn"></Button>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#ffffff"
+            android:id="@+id/login_msg"
+            android:gravity="right"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/signup_btn"
+            android:text="Have an account already?? Login."></TextView>
+
     </RelativeLayout>
 
 </RelativeLayout>
